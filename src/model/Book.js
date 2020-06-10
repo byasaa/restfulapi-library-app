@@ -12,6 +12,16 @@ module.exports = {
             })
         })
     },
+    bookDetailModel : (id) => {
+        return new Promise((resolve, reject) => {
+            connection.query("SELECT books.id as id, books.title as title, books.description as description, books.image as image, genres.name as genre,authors.name as author, books.book_status as status, books.created_at as created_at, books.updated_at as updated_at FROM books INNER JOIN genres ON books.genre_id = genres.id INNER JOIN authors ON books.author_id = authors.id WHERE books.id = ?", id, (error, result) => {
+                if (error) {
+                    reject(error)
+                }
+                resolve(result)
+            })
+        })
+    },
     searchBookModel : (search, sort, limit, page) => {
         let offset = (limit * page) - limit
         return new Promise((resolve, reject) => {
