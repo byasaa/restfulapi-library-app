@@ -14,7 +14,6 @@ let storage = multer.diskStorage({
 let upload = multer({ storage: storage, limits: { fileSize: 100000000 } })
 
 router
-    .all('/*')
     .get('/', bookController.getBooks)
     .get('/:id',bookController.bookDetail)
     .post('/', upload.single('image'),bookController.addBook)

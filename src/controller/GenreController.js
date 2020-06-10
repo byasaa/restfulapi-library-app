@@ -1,51 +1,51 @@
 const helper = require('../helper/index')
-const authorModel = require('../model/Author')
+const genreModel = require('../model/Genre')
 
 module.exports = {
-    getAuthors : async (req, res) => {
+    getGenres : async (req, res) => {
         try {
-            const result = await authorModel.getAuthorModel()
+            const result = await genreModel.getGenreModel()
             return helper.response(res, 'success', result, 201)
         } catch (error) {
             console.log(error)
             return helper.response(res, 'fail', 'Internal server Error', 500)
         }
     },
-    authorDetail : async (req, res) => {
+    genreDetail : async (req, res) => {
         const id = req.params.id
         try {
-            const result = await authorModel.authorDetailModel(id)
+            const result = await genreModel.genreDetailModel(id)
             return helper.response(res, 'success', result, 201)
         } catch (error) {
             console.log(error)
             return helper.response(res, 'fail', 'Internal server Error', 500)
         }
     },
-    addAuthor : async (req, res) => {
+    addGenre : async (req, res) => {
         const setData = req.body
         try {
-            const result = await authorModel.addAuthorModel(setData)
+            const result = await genreModel.addGenreModel(setData)
             return helper.response(res, 'success', result, 201)
         } catch (error) {
             console.log(error)
             return helper.response(res, 'fail', 'Internal server Error', 500)
         }
     },
-    updateAuthor : async (req, res) => {
+    updateGenre : async (req, res) => {
         const setData = req.body
         const id = req.params.id
         try {
-            const result = await authorModel.updateAuthorModel(setData, id)
+            const result = await genreModel.updateGenreModel(setData, id)
             return helper.response(res, 'success', result, 201)
         } catch (error) {
             console.log(error)
             return helper.response(res, 'fail', 'Internal server Error', 500)
         }
     },
-    deleteAuthor : async (req, res) => {
+    deleteGenre : async (req, res) => {
         const id = req.params.id
         try {
-            const result = await authorModel.deleteAuthorModel(id)
+            const result = await genreModel.deleteGenreModel(id)
             return helper.response(res, 'success', result, 201)
         } catch (error) {
             console.log(error)

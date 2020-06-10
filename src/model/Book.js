@@ -33,7 +33,7 @@ module.exports = {
             })
         })
     },
-    updateBookModel : ([setData, id]) => {
+    updateBookModel : (setData, id) => {
         return new Promise((resolve, reject) => {
             connection.query("UPDATE books SET ? WHERE id=?", [setData, id], (error, result) => {
                 if (error) {
