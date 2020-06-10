@@ -1,17 +1,6 @@
 const connection = require('../helper/mysql')
 
 module.exports = {
-    getBooksModel : (sort, limit, page) => {
-        let offset = (limit * page) - limit
-        return new Promise((resolve,reject) => {
-            connection.query("SELECT books.id as id, books.title as title, books.description as description, books.image as image, genres.name as genre,authors.name as author, books.book_status as status, books.created_at as created_at, books.updated_at as updated_at FROM books INNER JOIN genres ON books.genre_id = genres.id INNER JOIN authors ON books.author_id = authors.id ORDER BY ? DESC LIMIT ? OFFSET ?", [sort, limit, offset], (error, result) => {
-                if (error) {
-                    reject(error)
-                }
-                resolve(result)
-            })
-        })
-    },
     bookDetailModel : (id) => {
         return new Promise((resolve, reject) => {
             connection.query("SELECT books.id as id, books.title as title, books.description as description, books.image as image, genres.name as genre,authors.name as author, books.book_status as status, books.created_at as created_at, books.updated_at as updated_at FROM books INNER JOIN genres ON books.genre_id = genres.id INNER JOIN authors ON books.author_id = authors.id WHERE books.id = ?", id, (error, result) => {
@@ -22,11 +11,11 @@ module.exports = {
             })
         })
     },
-    searchBookModel : (search, sort, limit, page) => {
+    getBookModel : (search, order, sort, limit, page) => {
         let offset = (limit * page) - limit
         return new Promise((resolve, reject) => {
             const find = `%${search}%`
-            connection.query("SELECT books.id, books.title, books.description, books.image, genres.name AS genre,authors.name as author, books.book_status, books.created_at, books.updated_at FROM books INNER JOIN genres ON books.genre_id = genres.id INNER JOIN authors ON books.author_id = authors.id WHERE title LIKE ? OR genres.name LIKE ? OR authors.name LIKE ? OR book_status LIKE ? ORDER BY ? DESC LIMIT ? OFFSET ?", [find, find, find, find, sort, limit, offset], (error, result) => {
+            connection.query(`SELECT books.id as id, books.title as title, books.description as description, books.image as image, genres.name as genre,authors.name as author, books.book_status, books.created_at, books.updated_at FROM books INNER JOIN genres ON books.genre_id = genres.id INNER JOIN authors ON books.author_id = authors.id WHERE title LIKE ? OR genres.name LIKE ? OR authors.name LIKE ? OR book_status LIKE ? ORDER BY ${order} ${sort} LIMIT ? OFFSET ?`, [find, find, find, find, limit, offset], (error, result) => {
                 if (error) {
                     reject(error)
                 }
