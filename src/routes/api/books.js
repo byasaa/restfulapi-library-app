@@ -1,13 +1,12 @@
 const express = require('express')
 const router = express.Router()
-const connection = require('../../helper/mysql')
+const bookController = require('../../controller/BookController');
 
-router.get('/', (req,res) => {
-    connection.query("SELECT * FROM books", (error, result) => {
-        if(error) throw error
-        console.log(result)
-        res.send('test')
-    })
-})
-
+router
+    .all('/*')
+    .get('/', bookController.searchBook, bookController.getBooks)
+    .post('/', bookController.addBook)
+    // .put('/:id',bookController)
+    // .delete('/:id',bookController)
+    
 module.exports = router;
