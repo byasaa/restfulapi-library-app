@@ -6,7 +6,7 @@ router
     .all('/*')
     .get('/', bookController.searchBook, bookController.getBooks)
     .post('/', bookController.addBook)
-    // .put('/:id',bookController)
-    // .delete('/:id',bookController)
+    .put('/:id',bookController.updateBook)
+    .delete('/:id',bookController.deleteBook)
     
 module.exports = router;
