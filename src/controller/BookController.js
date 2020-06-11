@@ -15,9 +15,9 @@ module.exports = {
     getBooks : async (req, res) => {
         let limit = parseInt(req.query.limit) || 8
         let page = parseInt(req.query.page) || 1
-        let sort = req.query.sort || ''
+        let sort = req.query.sort || 'DESC'
         let search = req.query.search || ''
-        let orderBy = req.query.orderBy || ''
+        let orderBy = req.query.orderBy || 'created_at'
         try {
             const result = await bookModel.getBookModel(search, orderBy, sort, limit, page)
             if (result[0]){
