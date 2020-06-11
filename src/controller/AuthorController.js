@@ -5,7 +5,7 @@ module.exports = {
     getAuthors : async (req, res) => {
         try {
             const result = await authorModel.getAuthorModel()
-            return helper.response(res, 'success', result, 201)
+            return helper.response(res, 'success', result, 200)
         } catch (error) {
             console.log(error)
             return helper.response(res, 'fail', 'Internal server Error', 500)
@@ -15,7 +15,7 @@ module.exports = {
         const id = req.params.id
         try {
             const result = await authorModel.authorDetailModel(id)
-            return helper.response(res, 'success', result, 201)
+            return helper.response(res, 'success', result, 200)
         } catch (error) {
             console.log(error)
             return helper.response(res, 'fail', 'Internal server Error', 500)
@@ -36,7 +36,7 @@ module.exports = {
         const id = req.params.id
         try {
             const result = await authorModel.updateAuthorModel(setData, id)
-            return helper.response(res, 'success', result, 201)
+            return helper.response(res, 'success', result, 200)
         } catch (error) {
             console.log(error)
             return helper.response(res, 'fail', 'Internal server Error', 500)
@@ -46,7 +46,7 @@ module.exports = {
         const id = req.params.id
         try {
             const result = await authorModel.deleteAuthorModel(id)
-            return helper.response(res, 'success', result, 201)
+            return helper.response(res, 'success', result, 200)
         } catch (error) {
             console.log(error)
             return helper.response(res, 'fail', 'Internal server Error', 500)
