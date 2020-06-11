@@ -1,5 +1,6 @@
 const helper = require('../helper/index')
 const userModel = require('../model/User')
+const { genSaltSync, hashSync } = require('bcryptjs')
 
 module.exports = {
     getUsers : async (req, res) => {
@@ -21,10 +22,12 @@ module.exports = {
             return helper.response(res, 'fail', 'Internal server Error', 500)
         }
     },
-    addUser : async (req, res) => {
+    regUser : async (req, res) => {
         const setData = req.body
+        const salt = genSaltSync(10)
+        setData.password = hashSync(setData.password, salt)
         try {
-            const result = await userModel.addUserModel(setData)
+            const result = await userModel.regUserModel(setData)
             return helper.response(res, 'success', result, 201)
         } catch (error) {
             console.log(error)
