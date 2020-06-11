@@ -27,7 +27,11 @@ module.exports = {
                 if (error) {
                     reject(error)
                 }
-                resolve(result)
+                const newData = {
+                    id :result.insertId,
+                    ...setData
+                }
+                resolve(newData)
             })
         })
     },
