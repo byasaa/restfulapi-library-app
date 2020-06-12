@@ -1,6 +1,7 @@
 const helper = require('../helper/index')
 const userModel = require('../model/User')
-const { genSaltSync, hashSync } = require('bcryptjs')
+const { genSaltSync, hashSync, compareSync } = require('bcryptjs')
+const jwt = require('jsonwebtoken');
 
 module.exports = {
     getUsers : async (req, res) => {
@@ -29,6 +30,51 @@ module.exports = {
         try {
             const result = await userModel.regUserModel(setData)
             return helper.response(res, 'success', result, 201)
+        } catch (error) {
+            console.log(error)
+            return helper.response(res, 'fail', 'Internal server Error', 500)
+        }
+    },
+    loginUser : async (req,res) => {
+        try {
+            const username = req.body.username
+            const result = await userModel.getUserByUsername(username)
+            console.log(result[0])
+            return helper.response(res, 'success', result, 201)
+            // if (result.length <= 0) {
+            //     res.status(401).json({
+            //         'errors': {
+            //            message: 'Username & password wrong!',
+            //         }
+            //      })
+            // } else {
+            //     let user = result[0]
+            //     compareSync(req.body.password , user.password, (error, result) => {
+            //         if (error) {
+            //             res.status(401).json({
+            //                 'errors' : error.message
+            //             })
+            //         }
+            //         if (result) {
+            //             const token = jwt.sign({
+            //                 user : user
+            //             },
+            //             'secret',
+            //             {
+            //                 expiresIn : "1h"
+            //             }
+            //             )
+            //             return res.status(200).json({
+            //                 message: 'Auth successfully.',
+            //                 'data': {
+            //                    id: user.id,
+            //                    username: user.username,
+            //                    token: token
+            //                 },
+            //              })
+            //         }
+            //     })
+            // }
         } catch (error) {
             console.log(error)
             return helper.response(res, 'fail', 'Internal server Error', 500)

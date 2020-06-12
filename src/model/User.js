@@ -35,6 +35,16 @@ module.exports = {
             })
         })
     },
+    getUserByUsername : (username) => {
+        return new Promise((resolve, reject)=> {
+            connection.query("SELECT * FROM users WHERE username =?", username, (error, result) => {
+                if (error) {
+                    reject(error)
+                }
+                resolve(result)
+            })
+        }) 
+    },
     updateUserModel : (setData, id) => {
         return new Promise((resolve,reject) => {
             connection.query("UPDATE users SET ? WHERE id=?", [setData, id], (error, result) => {
