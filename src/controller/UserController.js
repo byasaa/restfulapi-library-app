@@ -39,42 +39,21 @@ module.exports = {
         try {
             const username = req.body.username
             const result = await userModel.getUserByUsername(username)
-            console.log(result[0])
-            return helper.response(res, 'success', result, 201)
-            // if (result.length <= 0) {
-            //     res.status(401).json({
-            //         'errors': {
-            //            message: 'Username & password wrong!',
-            //         }
-            //      })
-            // } else {
-            //     let user = result[0]
-            //     compareSync(req.body.password , user.password, (error, result) => {
-            //         if (error) {
-            //             res.status(401).json({
-            //                 'errors' : error.message
-            //             })
-            //         }
-            //         if (result) {
-            //             const token = jwt.sign({
-            //                 user : user
-            //             },
-            //             'secret',
-            //             {
-            //                 expiresIn : "1h"
-            //             }
-            //             )
-            //             return res.status(200).json({
-            //                 message: 'Auth successfully.',
-            //                 'data': {
-            //                    id: user.id,
-            //                    username: user.username,
-            //                    token: token
-            //                 },
-            //              })
-            //         }
-            //     })
-            // }
+            if (result[0]) {
+                const user = result[0]
+                const checkPass = compareSync(req.body.password, user.password)
+                if (checkPass) {
+                    delete user.password
+                    const token = jwt.sign({ user : user },'secret',{ expiresIn : "1h" })
+                    const newData = {
+                        ...result[0],
+                        token
+                    }
+                    return helper.response(res, 'success', newData, 200)
+                }
+                return helper.response(res, 'fail', 'Username Or Password Is Wrong!', 403)
+            }
+            return helper.response(res, 'fail', 'Data Not Found', 404)
         } catch (error) {
             console.log(error)
             return helper.response(res, 'fail', 'Internal server Error', 500)
