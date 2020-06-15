@@ -3,9 +3,9 @@ const router = express.Router()
 const userController = require('../../controller/UserController')
 
 router
-    .get('/', userController.getUsers)
-    .get('/:id', userController.userDetail)
-    .put('/:id', userController.updateUser)
-    .delete('/:id',userController.deleteUser)
+    .get('/', verifyToken,checkAdmin, userController.getUsers)
+    .get('/:id', verifyToken,checkAdmin, userController.userDetail)
+    .put('/:id', verifyToken,checkAdmin, userController.updateUser)
+    .delete('/:id',verifyToken,checkAdmin, userController.deleteUser)
 
 module.exports = router;

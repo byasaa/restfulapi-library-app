@@ -13,7 +13,7 @@ module.exports = {
         }
     },
     getBooks : async (req, res) => {
-        let limit = parseInt(req.query.limit) || 8
+        let limit = parseInt(req.query.limit) || 10
         let page = parseInt(req.query.page) || 1
         let sort = req.query.sort || 'DESC'
         let search = req.query.search || ''

@@ -19,5 +19,26 @@ module.exports = {
                 return helper.response(res, null, 'Invalid user Token',401 )
             }
         }
+    },
+    checkAdmin : (req, res, next) => {
+        const accessToken = req.headers.authorization
+        try {
+            const decoded = jwt.verify(accessToken, config.secretKey)
+            console.log(decoded)
+            if (decoded.user.role_id == 1) {
+                next()
+            }else{
+                return helper.response(res, null, 'You dont have access',403 )
+            }
+        } catch (error) {
+            console.log(error.name)
+            if (error.name === 'TokenExpiredError'){
+                return helper.response(res, null, 'Token expired', 401)
+            }else if (error.name === 'JsonWebTokenError') {
+                return helper.response(res, null, 'Invalid Token', 401)
+            }else {
+                return helper.response(res, null, 'Invalid user Token',401 )
+            }
+        }
     }
 }

@@ -5,8 +5,8 @@ const genreController = require('../../controller/GenreController')
 router
     .get('/', genreController.getGenres)
     .get('/:id', genreController.genreDetail)
-    .post('/', genreController.addGenre)
-    .put('/:id', genreController.updateGenre)
-    .delete('/:id',genreController.deleteGenre)
+    .post('/',verifyToken,checkAdmin, genreController.addGenre)
+    .put('/:id',verifyToken,checkAdmin, genreController.updateGenre)
+    .delete('/:id',verifyToken,checkAdmin, genreController.deleteGenre)
 
 module.exports = router;
