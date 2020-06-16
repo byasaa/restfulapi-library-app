@@ -49,7 +49,8 @@ module.exports = {
             jwt.verify(refreshToken, config.refreshKey, (error, user) => {
                 if (error) return helper.response(res, 'fail', error.name, 403)
                 const accessToken = jwt.sign({user : user.user}, config.secretKey, { expiresIn: '1h'})
-                return helper.response(res, 'success', {token :accessToken}, 200)
+                const refreshToken = jwt.sign({user : user.user}, config.refreshKey, { expiresIn: '1d'})
+                return helper.response(res, 'success', {token :accessToken, refreshToken : refreshToken}, 200)
             })
         } catch (error) {
             console.log(error.name)

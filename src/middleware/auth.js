@@ -20,12 +20,12 @@ module.exports = {
             }
         }
     },
-    checkAdmin : (req, res, next) => {
+    checkRole : roles => (req, res, next) => {
         const accessToken = req.headers.authorization
         try {
             const decoded = jwt.verify(accessToken, config.secretKey)
             console.log(decoded)
-            if (decoded.user.role_id == 1) {
+            if (roles.includes(decoded.user.role)) {
                 next()
             }else{
                 return helper.response(res, null, 'You dont have access',403 )
