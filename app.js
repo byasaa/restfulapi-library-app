@@ -3,8 +3,7 @@ const path = require('path')
 const app = express()
 require('dotenv').config()
 const cors = require('cors')
-const xssFilter = require('x-xss-protection')
-const whitelist = ['http://localhost']
+const whitelist = ['http://localhost:4000']
 const bodyParser = require('body-parser')
 const morgan = require('morgan')
 const connection = require('./src/helper/mysql')
@@ -40,7 +39,6 @@ const corsOptions = (req, callback) => {
 
 app.use(cors())
 app.options('*', cors(corsOptions))
-app.use(xssFilter())
 app.use('/api/', require('./src/routes/index'))
 
 const PORT = process.env.SERVER_PORT || 3000
