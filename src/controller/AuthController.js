@@ -46,10 +46,10 @@ module.exports = {
     token: (req ,res) => {
         try {
             const refreshToken = req.body.token
-            jwt.verify(refreshToken, config.refreshKey, (error, user) => {
+            jwt.verify(refreshToken, config.refreshKey, (error, decoded) => {
                 if (error) return helper.response(res, 'fail', error.name, 403)
-                const accessToken = jwt.sign({user : user.user}, config.secretKey, { expiresIn: '1h'})
-                const refreshToken = jwt.sign({user : user.user}, config.refreshKey, { expiresIn: '1d'})
+                const accessToken = jwt.sign({user : decoded.user}, config.secretKey, { expiresIn: '1h'})
+                const refreshToken = jwt.sign({user : decoded.user}, config.refreshKey, { expiresIn: '1d'})
                 return helper.response(res, 'success', {token :accessToken, refreshToken : refreshToken}, 200)
             })
         } catch (error) {

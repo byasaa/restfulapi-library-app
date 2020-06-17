@@ -22,5 +22,22 @@ setting .env file
 ```
 $ npm start
 ```
+## API Documentation
+### Scheme
+> Endpoint API available in
+```
+http://localhost:3000/api
+```
+### HTTP Verbs
+
+| Verbs    | Description                |
+| -------- | ---------------------------|
+| `GET`    | request data from server   |
+| `POST`   | send data to server        |
+| `PUT`    | change all data            |
+| `PATCH`  | change some data           |
+| `DELETE` | delete data                |
+
+### Authentication
 ## License
 © [Muhamad Abiyasa Sastra Wardana](https://github.com/byasaa)

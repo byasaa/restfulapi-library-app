@@ -23,6 +23,37 @@ module.exports = {
             })
         })
     },
+    loanBookModel: (setData) => {
+        return new Promise((resolve, reject) => {
+            connection.query("INSERT INTO loans SET ?", setData, (error, result) => {
+                if (error) {
+                    reject(error)
+                }
+                const newData = {
+                    id :result.insertId,
+                    ...setData
+                }
+                resolve(newData)
+                connection.query('UPDATE books SET book_status="Borrowed" WHERE id=?', setData.book_id)
+            })
+        })
+    },
+    returnBookModel: (setData,id) => {
+        return new Promise((resolve, reject) => {
+            connection.query('UPDATE loans SET ? WHERE id=?', [setData,setData.id], (error, result) => {
+                if (error) {
+                    reject(error)
+                }
+                const newData = {
+                    id,
+                    book_status :'Available',
+                    ...setData
+                }
+                resolve(newData)
+                connection.query('UPDATE books SET book_status="Available" WHERE id=?', id)
+            })
+        })
+    },
     addBookModel : (setData) => {
         return new Promise((resolve,reject) => {
             connection.query("INSERT INTO books SET ?", setData, (error, result) => {

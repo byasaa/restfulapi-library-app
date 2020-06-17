@@ -1,5 +1,7 @@
 const helper = require('../helper/index')
 const bookModel = require('../model/Book')
+const jwt = require('jsonwebtoken')
+const config = require('../config/global')
 
 module.exports = {
     bookDetail : async (req, res) => {
@@ -28,6 +30,43 @@ module.exports = {
         } catch (error) {
             console.log(error)
             return helper.response(res, 'fail', 'Internal server Error', 500)
+        }
+    },
+    borrowBook: async (req, res) => {
+        const id = req.params.id
+        const accessToken = req.headers.authorization
+        const decoded = jwt.verify(accessToken, config.secretKey)
+        req.decodedToken = decoded
+        const setData = {
+            user_id: decoded.user.id,
+            book_id: id,
+            status : 'borrow',
+        }
+        try {
+            const result = await bookModel.loanBookModel(setData,id);
+            return helper.response(res, 'success', result, 200)
+        } catch (error) {
+            if (error) {
+                console.log(error)
+                return helper.response(res, 'fail', 'Internal server Error', 500)
+            }
+        }
+    },
+    returnBook: async (req, res) => {
+        const id = req.params.id
+        const setData = {
+            id : req.body.loan_id,
+            status : 'returned',
+            updated_at : new Date()
+        }
+        try {
+            const result = await bookModel.returnBookModel(setData,id);
+            return helper.response(res, 'success', result, 200)
+        } catch (error) {
+            if (error) {
+                console.log(error)
+                return helper.response(res, 'fail', 'Internal server Error', 500)
+            }
         }
     },
     addBook : async (req, res)  => {
