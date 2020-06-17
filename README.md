@@ -1,12 +1,20 @@
 # NodeJS Restful API Library App
-Lorem ipsum
 ## Getting Started
-lorem ipsum dolor
-### Prerequisites
+### Made With
 * Node.js
-* MySQL
+* Express
+* JsonWebToken
+### Features
+* Auth with jwt
+* CRUD
+* Cors
+* Sorting
+* Search
+* Pagination
+### Flowchart App
+[Click Here](https://drive.google.com/file/d/1j7lRzfe3SeHC1U0qld22LBxOtvUiPKEb/view?usp=sharing)
 ### Installing Library App
-clone repo and install package
+> clone repo and install package
 ```
 $ git clone https://github.com/byasaa/library-app.git
 $ cd library-app
@@ -38,6 +46,14 @@ http://localhost:3000/api
 | `PATCH`  | change some data           |
 | `DELETE` | delete data                |
 
-### Authentication
+### Endpoint
+| Verbs     | Description      |
+| --------- | -----------------|
+| `/books`  | Book             |
+| `/auth`   | Auth             |
+| `/loans`  | Loans            |
+| `/authors`| author           |
+| `/genres` | genre data       |
+| `/users`  | user             |
 ## License
 © [Muhamad Abiyasa Sastra Wardana](https://github.com/byasaa)

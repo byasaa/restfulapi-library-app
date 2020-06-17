@@ -7,6 +7,7 @@ const config = require('../config/global')
 module.exports = {
     register : async (req, res) => {
         const setData = req.body
+        setData.role_id = 3
         const salt = genSaltSync(10)
         setData.password = hashSync(setData.password, salt)
         try {
@@ -39,9 +40,6 @@ module.exports = {
             console.log(error)
             return helper.response(res, 'fail', 'Internal server Error', 500)
         }
-    },
-    logout: async (req, res) => {
-
     },
     token: (req ,res) => {
         try {

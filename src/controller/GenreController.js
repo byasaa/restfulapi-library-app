@@ -34,6 +34,7 @@ module.exports = {
     updateGenre : async (req, res) => {
         const setData = req.body
         const id = req.params.id
+        setData.updated_at = new Date()
         try {
             const result = await genreModel.updateGenreModel(setData, id)
             return helper.response(res, 'success', result, 200)

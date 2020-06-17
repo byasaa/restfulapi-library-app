@@ -88,6 +88,7 @@ module.exports = {
             ...req.body
         }
         const id = req.params.id
+        setData.updated_at = new Date()
         try {
             const result = await bookModel.updateBookModel([setData,id]);
             return helper.response(res, 'success', result, 200)

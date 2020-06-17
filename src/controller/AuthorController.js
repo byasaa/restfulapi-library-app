@@ -34,6 +34,7 @@ module.exports = {
     updateAuthor : async (req, res) => {
         const setData = req.body
         const id = req.params.id
+        setData.updated_at = new Date()
         try {
             const result = await authorModel.updateAuthorModel(setData, id)
             return helper.response(res, 'success', result, 200)
