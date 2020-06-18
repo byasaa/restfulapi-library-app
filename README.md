@@ -38,13 +38,13 @@ http://localhost:3000/api
 ```
 ### HTTP Verbs
 
-| Verbs    | Description                |
-| -------- | ---------------------------|
-| `GET`    | request data from server   |
-| `POST`   | send data to server        |
-| `PUT`    | change all data            |
-| `PATCH`  | change some data           |
-| `DELETE` | delete data                |
+| Verbs    | Description                    |
+| -------- | ------------------------------ |
+| `GET`    | Request data from the server   |
+| `POST`   | send data to server            |
+| `PUT`    | change all data                |
+| `PATCH`  | change some data               |
+| `DELETE` | delete data                    |
 
 ### Endpoint
 | Verbs     | Description      |
@@ -52,8 +52,8 @@ http://localhost:3000/api
 | `/books`  | Book             |
 | `/auth`   | Auth             |
 | `/loans`  | Loans            |
-| `/authors`| author           |
-| `/genres` | genre data       |
-| `/users`  | user             |
+| `/authors`| Author           |
+| `/genres` | Genre            |
+| `/users`  | User             |
 ## License
 © [Muhamad Abiyasa Sastra Wardana](https://github.com/byasaa)
