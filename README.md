@@ -16,8 +16,8 @@
 ### Installing Library App
 > clone repo and install package
 ```
-$ git clone https://github.com/byasaa/library-app.git
-$ cd library-app
+$ git clone https://github.com/byasaa/restfulapi-library-app.git
+$ cd restfulapi-library-app
 $ npm install
 ```
 ### Environment Configuration
