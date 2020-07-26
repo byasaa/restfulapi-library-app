@@ -35,6 +35,7 @@ module.exports = {
                 }
                 return helper.response(res, 'fail', 'Username Or Password Is Wrong!', 403)
             }
+            console.log(result)
             return helper.response(res, 'fail', 'Data Not Found', 404)
         } catch (error) {
             console.log(error)

@@ -74,6 +74,9 @@ module.exports = {
             image : req.file.filename,
             ...req.body
         }
+        console.log(req.file)
+        // console.log(setData)
+        // return helper.response(res, 'success', 'ok', 201)
         try {
             const result = await bookModel.addBookModel(setData)
             return helper.response(res, 'success', result, 201)
@@ -90,7 +93,7 @@ module.exports = {
         const id = req.params.id
         setData.updated_at = new Date()
         try {
-            const result = await bookModel.updateBookModel([setData,id]);
+            const result = await bookModel.updateBookModel(setData,id);
             return helper.response(res, 'success', result, 200)
         } catch (error) {
             if (error) {

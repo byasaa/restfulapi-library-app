@@ -1,13 +1,13 @@
 # NodeJS Restful API Library App
 ## Getting Started
 ### Made With
-* Node.js
-* Express
-* JsonWebToken
+* Node.js is a JavaScript runtime built on Chrome's V8 JavaScript engine.
+* Express (Fast, Minimalist, Unopinionated)
+* RESTful API (Representational State Transfer)
 ### Features
-* Auth with jwt
-* CRUD
-* Cors
+* Auth with jwt (Login, Register)
+* CRUD (Create, Update, Delete, Read Data of book)
+* Borrow Book
 * Sorting
 * Search
 * Pagination
