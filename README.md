@@ -16,8 +16,8 @@
 ### Installing Library App
 > clone repo and install package
 ```
-$ git clone https://github.com/byasaa/library-app.git
-$ cd library-app
+$ git clone https://github.com/byasaa/restfulapi-library-app.git
+$ cd restfulapi-library-app
 $ npm install
 ```
 ### Environment Configuration
@@ -38,13 +38,13 @@ http://localhost:3000/api
 ```
 ### HTTP Verbs
 
-| Verbs    | Description                |
-| -------- | ---------------------------|
-| `GET`    | request data from server   |
-| `POST`   | send data to server        |
-| `PUT`    | change all data            |
-| `PATCH`  | change some data           |
-| `DELETE` | delete data                |
+| Verbs    | Description                                           |
+| -------- | ----------------------------------------------------- |
+| `GET`    | Request data from the server                          |
+| `POST`   | Sending data to the server                            |
+| `PUT`    | Change all data that is already on the server         |
+| `PATCH`  | Change Most of the data already exists on the server  |
+| `DELETE` | Delete data that is already on the server             |
 
 ### Endpoint
 | Verbs     | Description      |
@@ -52,8 +52,8 @@ http://localhost:3000/api
 | `/books`  | Book             |
 | `/auth`   | Auth             |
 | `/loans`  | Loans            |
-| `/authors`| author           |
-| `/genres` | genre data       |
-| `/users`  | user             |
+| `/authors`| Author           |
+| `/genres` | Genre            |
+| `/users`  | User             |
 ## License
 © [Muhamad Abiyasa Sastra Wardana](https://github.com/byasaa)
